@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "zapiack"
+version = "0.1.0"
+description = "The official Zapiack SDK for Python: email, SMS and push notifications from one client."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Zapiack", email = "support@zapiack.com" }]
+requires-python = ">=3.9"
+dependencies = []
+keywords = ["zapiack", "email", "sms", "push", "notifications", "sdk"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Typing :: Typed",
+]
+
+[project.urls]
+Homepage = "https://zapiack.com"
+Documentation = "https://docs.zapiack.com/introduction"
+Source = "https://github.com/zapiack-hq/zapiack-python"
+Issues = "https://github.com/zapiack-hq/zapiack-python/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+zapiack = ["py.typed"]
