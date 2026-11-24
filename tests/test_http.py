@@ -11,7 +11,7 @@ class Headers(unittest.TestCase):
         z.email.get("e1")
         h = t.calls[0].headers
         self.assertEqual(h["Authorization"], "Bearer zpk_abc12345_secret")
-        self.assertTrue(h["User-Agent"].startswith("zapiack-python/0.1.0 python/"))
+        self.assertTrue(h["User-Agent"].startswith("zapiack-python/0.2.0 python/"))
         self.assertTrue(h["X-Request-Id"])
         self.assertEqual(t.calls[0].url, "https://api.zapiack.com/v1/email/e1")
 

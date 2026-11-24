@@ -2,6 +2,10 @@
 
 All notable changes to zapiack (Python) are listed here. Versions follow [semantic versioning](https://semver.org).
 
+## 0.2.0
+
+Adds Realtime (tokens, publishing, batches, history, presence, channels, disconnecting people) and Calls (starting, answering, declining and ending calls, rooms, join tokens, webhooks).
+
 ## 0.1.0
 
 First release.

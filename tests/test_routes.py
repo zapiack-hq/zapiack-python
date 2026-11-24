@@ -123,6 +123,30 @@ ROUTES = [
     ("push.webhooks.create", lambda z: z.push.webhooks.create({"url": "https://x.test/h", "events": ["push.sent"]}), "POST", "push/webhooks", {"url": "https://x.test/h", "events": ["push.sent"]}),
     ("push.webhooks.rotate", lambda z: z.push.webhooks.rotate_secret("w1"), "POST", "push/webhooks/w1/secret", None),
     ("push.webhooks.test", lambda z: z.push.webhooks.test("w1"), "POST", "push/webhooks/w1/test", None),
+    # calls
+    ("calls.start", lambda z: z.calls.start({"caller": "ada", "callees": ["bola", "lee"], "mediaKind": "video"}), "POST", "calls", {"caller": "ada", "callees": ["bola", "lee"], "mediaKind": "video"}),
+    ("calls.get", lambda z: z.calls.get("c 1"), "GET", "calls/c%201", None),
+    ("calls.accept", lambda z: z.calls.accept("c1", {"identity": "bola"}), "POST", "calls/c1/accept", {"identity": "bola"}),
+    ("calls.decline", lambda z: z.calls.decline("c1", {"identity": "bola"}), "POST", "calls/c1/decline", {"identity": "bola"}),
+    ("calls.cancel", lambda z: z.calls.cancel("c1", {"identity": "ada"}), "POST", "calls/c1/cancel", {"identity": "ada"}),
+    ("calls.end", lambda z: z.calls.end("c1", {"identity": "ada"}), "POST", "calls/c1/end", {"identity": "ada"}),
+    ("calls.create_room", lambda z: z.calls.create_room({"name": "Standup"}), "POST", "calls/rooms", {"name": "Standup"}),
+    ("calls.list_rooms", lambda z: z.calls.list_rooms({"status": "ACTIVE"}), "GET", "calls/rooms?status=ACTIVE", None),
+    ("calls.get_room", lambda z: z.calls.get_room("r1"), "GET", "calls/rooms/r1", None),
+    ("calls.end_room", lambda z: z.calls.end_room("r1"), "DELETE", "calls/rooms/r1", None),
+    ("calls.token", lambda z: z.calls.token({"roomId": "r1", "identity": "ada"}), "POST", "calls/tokens", {"roomId": "r1", "identity": "ada"}),
+    ("calls.webhooks.list", lambda z: z.calls.webhooks.list(), "GET", "calls/webhooks", None),
+    ("calls.webhooks.create", lambda z: z.calls.webhooks.create({"url": "https://x.test/h", "events": ["call.ended"]}), "POST", "calls/webhooks", {"url": "https://x.test/h", "events": ["call.ended"]}),
+    ("calls.webhooks.remove", lambda z: z.calls.webhooks.remove("w1"), "DELETE", "calls/webhooks/w1", None),
+    # realtime
+    ("realtime.token", lambda z: z.realtime.token({"capabilities": {"chat:*": ["subscribe"]}}), "POST", "realtime/tokens", {"capabilities": {"chat:*": ["subscribe"]}}),
+    ("realtime.publish", lambda z: z.realtime.publish("chat:1", {"data": 1}), "POST", "realtime/channels/chat%3A1/publish", {"data": 1}),
+    ("realtime.publish_batch", lambda z: z.realtime.publish_batch([{"channel": "a"}]), "POST", "realtime/publish/batch", {"events": [{"channel": "a"}]}),
+    ("realtime.history", lambda z: z.realtime.history("chat:1", {"limit": 20}), "GET", "realtime/channels/chat%3A1/history?limit=20", None),
+    ("realtime.presence", lambda z: z.realtime.presence("chat:1"), "GET", "realtime/channels/chat%3A1/presence", None),
+    ("realtime.channels", lambda z: z.realtime.channels({"search": "c"}), "GET", "realtime/channels?search=c", None),
+    ("realtime.disconnect_connection", lambda z: z.realtime.disconnect_connection("k1"), "POST", "realtime/connections/k1/disconnect", None),
+    ("realtime.disconnect_user", lambda z: z.realtime.disconnect_user("ada"), "POST", "realtime/users/ada/disconnect", None),
 ]
 
 LIST_SHAPES = {"data": [], "messages": [], "deliveries": [], "devices": []}

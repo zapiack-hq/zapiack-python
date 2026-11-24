@@ -5,8 +5,10 @@ from typing import Callable, Optional
 
 from ._http import HttpClient, Transport, urllib_transport
 from .errors import ZapiackConfigError
+from .resources.calls import Calls
 from .resources.email import Email
 from .resources.push import Push
+from .resources.realtime import Realtime
 from .resources.sms import Sms
 from .resources.whatsapp import Whatsapp
 from .webhooks import Webhooks
@@ -51,6 +53,8 @@ class Zapiack:
         )
         self.email = Email(http)
         self.sms = Sms(http)
+        self.realtime = Realtime(http)
+        self.calls = Calls(http)
         self.whatsapp = Whatsapp(http)
         self.push = Push(http)
         self.webhooks = Webhooks()
